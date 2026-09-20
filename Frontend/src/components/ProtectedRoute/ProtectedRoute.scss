@@ -1,0 +1,52 @@
+@use "../../styles/variables" as *;
+
+.protected-route-loading {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  background: $color-background;
+  color: $color-text-secondary;
+
+  font-family: $font-family;
+
+  &__spinner {
+    width: 34px;
+    height: 34px;
+
+    border: 3px solid rgba(124, 58, 237, 0.14);
+    border-top-color: $color-primary;
+    border-radius: 50%;
+
+    animation: protectedRouteSpin 0.8s linear infinite;
+  }
+
+  p {
+    margin: 0;
+    font-size: $font-sm;
+    font-weight: $weight-medium;
+  }
+}
+
+[data-theme="dark"] {
+
+  .protected-route-loading {
+    background: $dark-background;
+    color: $dark-text-secondary;
+
+    &__spinner {
+      border-color: rgba(139, 92, 246, 0.16);
+      border-top-color: #8b5cf6;
+    }
+  }
+}
+
+@keyframes protectedRouteSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}

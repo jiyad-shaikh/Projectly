@@ -1,0 +1,210 @@
+// ========================================
+// PROJECTLY DESIGN SYSTEM
+// ========================================
+
+
+// ========================================
+// BRAND COLORS
+// ========================================
+
+$color-primary: #7c3aed;
+$color-primary-hover: #6d28d9;
+
+$color-secondary: #2563eb;
+$color-accent: #06b6d4;
+
+
+// ========================================
+// LIGHT THEME
+// ========================================
+
+$color-background: #f6f5ff;
+$color-background-secondary: #eef2ff;
+
+$color-surface: rgba(255, 255, 255, 0.78);
+$color-surface-solid: #ffffff;
+$color-surface-hover: rgba(255, 255, 255, 0.92);
+
+$color-text-primary: #17151f;
+$color-text-secondary: #5f5b6d;
+$color-text-muted: #9290a0;
+
+$color-border: rgba(124, 58, 237, 0.12);
+$color-border-hover: rgba(124, 58, 237, 0.30);
+
+
+// ========================================
+// DARK THEME
+// ========================================
+
+$dark-background: #070711;
+$dark-background-secondary: #0b0c18;
+
+$dark-surface: rgba(15, 16, 32, 0.72);
+$dark-surface-solid: #0f1020;
+$dark-surface-hover: rgba(21, 22, 42, 0.86);
+
+$dark-text-primary: #f5f3ff;
+$dark-text-secondary: #aaa7bd;
+$dark-text-muted: #747188;
+
+$dark-border: rgba(139, 92, 246, 0.20);
+$dark-border-hover: rgba(139, 92, 246, 0.42);
+
+
+// ========================================
+// GRADIENTS
+// ========================================
+
+$gradient-primary: linear-gradient(
+  135deg,
+  #7c3aed 0%,
+  #4f46e5 50%,
+  #2563eb 100%
+);
+
+$gradient-primary-hover: linear-gradient(
+  135deg,
+  #6d28d9 0%,
+  #4338ca 50%,
+  #1d4ed8 100%
+);
+
+$gradient-accent: linear-gradient(
+  135deg,
+  #7c3aed,
+  #2563eb,
+  #06b6d4
+);
+
+$gradient-text: linear-gradient(
+  135deg,
+  #7c3aed,
+  #2563eb
+);
+
+
+// ========================================
+// AMBIENT GLOWS
+// ========================================
+
+$glow-purple: rgba(124, 58, 237, 0.16);
+$glow-blue: rgba(37, 99, 235, 0.14);
+$glow-cyan: rgba(6, 182, 212, 0.10);
+
+$dark-glow-purple: rgba(124, 58, 237, 0.22);
+$dark-glow-blue: rgba(37, 99, 235, 0.18);
+$dark-glow-cyan: rgba(6, 182, 212, 0.12);
+
+
+// ========================================
+// STATUS COLORS
+// ========================================
+
+$color-success: #16a36a;
+$color-warning: #e6a23c;
+$color-danger: #e05252;
+
+
+// ========================================
+// TYPOGRAPHY
+// ========================================
+
+$font-family:
+  Inter,
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  sans-serif;
+
+$font-xs: 0.75rem;
+$font-sm: 0.875rem;
+$font-md: 1rem;
+$font-lg: 1.125rem;
+$font-xl: 1.25rem;
+$font-2xl: 1.5rem;
+$font-3xl: 2rem;
+$font-4xl: 2.5rem;
+
+$weight-regular: 400;
+$weight-medium: 500;
+$weight-semibold: 600;
+$weight-bold: 700;
+$weight-extrabold: 800;
+
+
+// ========================================
+// BORDER RADIUS
+// ========================================
+
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 14px;
+$radius-xl: 20px;
+$radius-2xl: 28px;
+
+
+// ========================================
+// LIGHT SHADOWS
+// ========================================
+
+$shadow-sm:
+  0 4px 16px rgba(30, 20, 70, 0.05);
+
+$shadow-md:
+  0 12px 35px rgba(30, 20, 70, 0.09);
+
+$shadow-lg:
+  0 20px 60px rgba(30, 20, 70, 0.12);
+
+
+// ========================================
+// DARK SHADOWS
+// ========================================
+
+$dark-shadow-sm:
+  0 4px 18px rgba(0, 0, 0, 0.28);
+
+$dark-shadow-md:
+  0 12px 40px rgba(0, 0, 0, 0.38);
+
+$dark-shadow-lg:
+  0 20px 70px rgba(0, 0, 0, 0.48);
+
+
+// ========================================
+// GLOWING SHADOWS
+// ========================================
+
+$shadow-glow:
+  0 0 30px rgba(124, 58, 237, 0.10);
+
+$shadow-glow-hover:
+  0 0 35px rgba(124, 58, 237, 0.18);
+
+$dark-shadow-glow:
+  0 0 30px rgba(124, 58, 237, 0.14);
+
+$dark-shadow-glow-hover:
+  0 0 40px rgba(124, 58, 237, 0.24);
+
+
+// ========================================
+// TRANSITIONS
+// ========================================
+
+$transition-fast: 0.15s ease;
+
+$transition-normal: 0.25s ease;
+
+$transition-smooth:
+  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+
+// ========================================
+// LAYOUT
+// ========================================
+
+$sidebar-width: 240px;
+
+$max-content-width: 1400px;

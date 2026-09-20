@@ -1,0 +1,1116 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.profile-page {
+  min-height: 100%;
+
+  // PageShell owns the global background.
+  background: transparent;
+
+  // =====================================================
+  // HEADER
+  // =====================================================
+
+  &__header {
+    max-width: $max-content-width;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  &__eyebrow {
+    font-size: 11px;
+    font-weight: $weight-bold;
+    letter-spacing: 0.1em;
+    color: $color-primary;
+  }
+
+  &__header h1 {
+    margin-top: 8px;
+
+    font-size: $font-3xl;
+    font-weight: $weight-extrabold;
+
+    color: $color-text-primary;
+  }
+
+  &__subtitle {
+    margin-top: 8px;
+    max-width: 650px;
+
+    font-size: $font-sm;
+    line-height: 1.6;
+
+    color: $color-text-secondary;
+  }
+
+  // =====================================================
+  // EDIT BUTTON
+  // =====================================================
+
+  &__edit-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 11px 16px;
+
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+
+    background: $color-surface;
+    color: $color-text-primary;
+
+    font-family: inherit;
+    font-size: $font-sm;
+    font-weight: $weight-semibold;
+
+    cursor: pointer;
+
+    transition:
+      border-color $transition-fast,
+      transform $transition-fast,
+      box-shadow $transition-fast;
+
+    &:hover {
+      border-color: $color-border-hover;
+      transform: translateY(-1px);
+      box-shadow: $shadow-sm;
+    }
+  }
+
+  // =====================================================
+  // SAVED NOTIFICATION
+  // =====================================================
+
+  &__saved {
+    max-width: $max-content-width;
+    margin: 20px auto 0;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 11px 14px;
+
+    border: 1px solid rgba(32, 165, 106, 0.2);
+    border-radius: $radius-md;
+
+    background: rgba(32, 165, 106, 0.07);
+
+    color: $color-success;
+
+    font-size: $font-sm;
+    font-weight: $weight-semibold;
+
+    span {
+      width: 22px;
+      height: 22px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+      background: rgba(32, 165, 106, 0.13);
+    }
+  }
+
+  // =====================================================
+  // MAIN LAYOUT
+  // =====================================================
+
+  &__layout {
+    max-width: $max-content-width;
+    margin: 34px auto 0;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 18px;
+
+    align-items: start;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  // =====================================================
+  // CARDS
+  // =====================================================
+
+  &__card {
+    @include card;
+
+    padding: 24px;
+  }
+
+  // =====================================================
+  // IDENTITY CARD
+  // =====================================================
+
+  &__identity-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+  }
+
+  &__identity {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__avatar {
+    width: 68px;
+    height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 20px;
+
+    background: $gradient-primary;
+    color: #fff;
+
+    font-size: $font-lg;
+    font-weight: $weight-bold;
+
+    box-shadow:
+      0 10px 25px rgba(124, 58, 237, 0.2);
+  }
+
+  &__identity-info h2 {
+    font-size: $font-xl;
+    font-weight: $weight-bold;
+    color: $color-text-primary;
+  }
+
+  &__identity-info p {
+    margin-top: 4px;
+
+    font-size: $font-sm;
+    color: $color-text-secondary;
+  }
+
+  &__identity-info span {
+    display: inline-block;
+
+    margin-top: 8px;
+    padding: 4px 8px;
+
+    border-radius: 20px;
+
+    background: rgba(91, 92, 240, 0.08);
+    color: $color-primary;
+
+    font-size: 10px;
+    font-weight: $weight-semibold;
+  }
+
+  // =====================================================
+  // MEMBER SINCE
+  // =====================================================
+
+  &__member {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+
+    span {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      font-weight: $weight-bold;
+      color: $color-text-muted;
+    }
+
+    strong {
+      font-size: $font-xs;
+      color: $color-text-secondary;
+    }
+  }
+
+  // =====================================================
+  // SECTION HEADING
+  // =====================================================
+
+  &__section-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-bottom: 22px;
+  }
+
+  &__section-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: rgba(124, 58, 237, 0.09);
+    color: $color-primary;
+
+    font-size: $font-md;
+    font-weight: $weight-bold;
+  }
+
+  &__section-heading h2 {
+    font-size: $font-lg;
+    font-weight: $weight-bold;
+    color: $color-text-primary;
+  }
+
+  &__section-heading p {
+    margin-top: 3px;
+
+    font-size: $font-xs;
+    color: $color-text-muted;
+  }
+
+  // =====================================================
+  // ABOUT
+  // =====================================================
+
+  &__about > p {
+    font-size: $font-sm;
+    line-height: 1.7;
+
+    color: $color-text-secondary;
+  }
+
+  &__details {
+    margin-top: 22px;
+    padding-top: 19px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+
+    border-top: 1px solid $color-border;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    span {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      font-weight: $weight-bold;
+      color: $color-text-muted;
+    }
+
+    strong,
+    a {
+      font-size: $font-xs;
+      color: $color-text-primary;
+    }
+
+    a {
+      color: $color-primary;
+      text-decoration: none;
+      font-weight: $weight-semibold;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // =====================================================
+  // FORM
+  // =====================================================
+
+  &__fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+
+    &.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      margin-bottom: 7px;
+
+      font-size: $font-xs;
+      font-weight: $weight-semibold;
+
+      color: $color-text-primary;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+
+      padding: 11px 12px;
+
+      border: 1px solid $color-border;
+      border-radius: $radius-md;
+
+      outline: none;
+
+      background: $color-surface;
+      color: $color-text-primary;
+
+      font-family: $font-family;
+      font-size: $font-sm;
+
+      transition:
+        border-color $transition-fast,
+        box-shadow $transition-fast,
+        background $transition-fast;
+
+      &:focus {
+        border-color: $color-primary;
+
+        box-shadow:
+          0 0 0 3px rgba(124, 58, 237, 0.08);
+      }
+
+      &:disabled {
+        background: $color-background;
+        color: $color-text-muted;
+        cursor: not-allowed;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    small {
+      margin-top: 5px;
+
+      font-size: 10px;
+      color: $color-text-muted;
+    }
+  }
+
+  // =====================================================
+  // FORM ACTIONS
+  // =====================================================
+
+  &__form-actions {
+    margin-top: 24px;
+    padding-top: 18px;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+
+    border-top: 1px solid $color-border;
+
+    button {
+      padding: 10px 15px;
+
+      border-radius: $radius-md;
+
+      font-family: inherit;
+      font-size: $font-sm;
+      font-weight: $weight-semibold;
+
+      cursor: pointer;
+    }
+
+    .secondary {
+      border: 1px solid $color-border;
+
+      background: $color-surface;
+      color: $color-text-secondary;
+
+      transition:
+        border-color $transition-fast,
+        color $transition-fast,
+        background $transition-fast;
+
+      &:hover {
+        border-color: $color-border-hover;
+        color: $color-text-primary;
+      }
+    }
+
+    button[type="submit"] {
+      @include gradient-button;
+
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+  }
+
+  // =====================================================
+  // SKILLS
+  // =====================================================
+
+  &__skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__skill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 7px 10px;
+
+    border: 1px solid rgba(124, 58, 237, 0.16);
+    border-radius: 7px;
+
+    background: rgba(124, 58, 237, 0.06);
+    color: $color-primary;
+
+    font-size: $font-xs;
+    font-weight: $weight-semibold;
+
+    button {
+      width: 17px;
+      height: 17px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0;
+
+      border: none;
+      border-radius: 50%;
+
+      background: rgba(124, 58, 237, 0.12);
+      color: $color-primary;
+
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(224, 82, 82, 0.12);
+        color: $color-danger;
+      }
+    }
+  }
+
+  &__skills-divider {
+    margin: 24px 0 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: $color-text-muted;
+
+    font-size: 10px;
+    font-weight: $weight-semibold;
+
+    &::before,
+    &::after {
+      content: "";
+
+      height: 1px;
+      background: $color-border;
+    }
+
+    &::before {
+      width: 20px;
+    }
+
+    &::after {
+      flex: 1;
+    }
+  }
+
+  &__available-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+
+    button {
+      padding: 7px 10px;
+
+      border: 1px solid $color-border;
+      border-radius: 7px;
+
+      background: $color-surface;
+      color: $color-text-secondary;
+
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: $weight-semibold;
+
+      cursor: pointer;
+
+      transition:
+        border-color $transition-fast,
+        background $transition-fast,
+        color $transition-fast;
+
+      &:hover {
+        border-color: $color-border-hover;
+      }
+
+      &.selected {
+        border-color: rgba(124, 58, 237, 0.2);
+
+        background: rgba(124, 58, 237, 0.08);
+        color: $color-primary;
+      }
+
+      span {
+        margin-right: 4px;
+      }
+    }
+  }
+
+  // =====================================================
+  // ASIDE
+  // =====================================================
+
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  &__card-label {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    font-weight: $weight-bold;
+    color: $color-text-muted;
+  }
+
+  // =====================================================
+  // STATS
+  // =====================================================
+
+  &__stats {
+    margin-top: 18px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      &:not(:first-child) {
+        padding-left: 14px;
+        border-left: 1px solid $color-border;
+      }
+    }
+
+    strong {
+      font-size: $font-xl;
+      color: $color-primary;
+    }
+
+    span {
+      font-size: 9px;
+      color: $color-text-muted;
+    }
+  }
+
+  // =====================================================
+  // TIPS
+  // =====================================================
+
+  &__tips {
+    position: relative;
+    overflow: hidden;
+
+    background:
+      radial-gradient(
+        circle at 100% 0%,
+        rgba(124, 58, 237, 0.12),
+        transparent 45%
+      ),
+      $color-surface;
+  }
+
+  &__tips-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: rgba(124, 58, 237, 0.1);
+    color: $color-primary;
+  }
+
+  &__tips h3 {
+    margin-top: 17px;
+
+    font-size: $font-md;
+    font-weight: $weight-bold;
+
+    color: $color-text-primary;
+  }
+
+  &__tips p {
+    margin-top: 7px;
+
+    font-size: $font-xs;
+    line-height: 1.7;
+
+    color: $color-text-secondary;
+  }
+
+  &__tips a {
+    display: inline-block;
+
+    margin-top: 16px;
+
+    color: $color-primary;
+
+    font-size: $font-xs;
+    font-weight: $weight-semibold;
+
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// =====================================================
+// DARK THEME
+// =====================================================
+
+[data-theme="dark"] {
+  .profile-page {
+    background: transparent;
+
+    // Header
+    &__header h1 {
+      color: $dark-text-primary;
+    }
+
+    &__subtitle {
+      color: $dark-text-secondary;
+    }
+
+    &__edit-btn {
+      background: $dark-surface;
+      border-color: $dark-border;
+      color: $dark-text-primary;
+
+      &:hover {
+        border-color: $dark-border-hover;
+        box-shadow: $dark-shadow-sm;
+      }
+    }
+
+    // Saved
+    &__saved {
+      background: rgba(32, 165, 106, 0.08);
+      border-color: rgba(32, 165, 106, 0.25);
+    }
+
+    // Cards
+    &__card {
+      @include dark-card;
+    }
+
+    // Identity
+    &__identity-info h2 {
+      color: $dark-text-primary;
+    }
+
+    &__identity-info p {
+      color: $dark-text-secondary;
+    }
+
+    &__identity-info span {
+      background: rgba(124, 58, 237, 0.15);
+      color: #a78bfa;
+    }
+
+    &__member {
+      span {
+        color: $dark-text-muted;
+      }
+
+      strong {
+        color: $dark-text-secondary;
+      }
+    }
+
+    // Section headings
+    &__section-heading h2 {
+      color: $dark-text-primary;
+    }
+
+    &__section-heading p {
+      color: $dark-text-muted;
+    }
+
+    // About
+    &__about > p {
+      color: $dark-text-secondary;
+    }
+
+    &__details {
+      border-color: $dark-border;
+
+      span {
+        color: $dark-text-muted;
+      }
+
+      strong {
+        color: $dark-text-primary;
+      }
+
+      a {
+        color: #a78bfa;
+      }
+    }
+
+    // Form
+    &__field {
+      label {
+        color: $dark-text-primary;
+      }
+
+      input,
+      textarea,
+      select {
+        background: $dark-surface-solid;
+        border-color: $dark-border;
+        color: $dark-text-primary;
+
+        &::placeholder {
+          color: $dark-text-muted;
+        }
+
+        &:focus {
+          border-color: rgba(139, 92, 246, 0.55);
+
+          box-shadow:
+            0 0 0 3px rgba(124, 58, 237, 0.12),
+            0 0 20px rgba(124, 58, 237, 0.06);
+        }
+
+        &:disabled {
+          background: #0b0c18;
+          color: $dark-text-muted;
+        }
+      }
+
+      select {
+        color-scheme: dark;
+      }
+
+      small {
+        color: $dark-text-muted;
+      }
+    }
+
+    // Form actions
+    &__form-actions {
+      border-color: $dark-border;
+
+      .secondary {
+        background: $dark-surface-solid;
+        border-color: $dark-border;
+        color: $dark-text-secondary;
+
+        &:hover {
+          border-color: $dark-border-hover;
+          color: $dark-text-primary;
+        }
+      }
+    }
+
+    // Skills
+    &__skill {
+      border-color: rgba(139, 92, 246, 0.24);
+      background: rgba(124, 58, 237, 0.12);
+      color: #a78bfa;
+
+      button {
+        background: rgba(124, 58, 237, 0.18);
+        color: #a78bfa;
+      }
+    }
+
+    &__skills-divider {
+      color: $dark-text-muted;
+
+      &::before,
+      &::after {
+        background: $dark-border;
+      }
+    }
+
+    &__available-skills {
+      button {
+        background: $dark-surface-solid;
+        border-color: $dark-border;
+        color: $dark-text-secondary;
+
+        &:hover {
+          border-color: $dark-border-hover;
+          color: $dark-text-primary;
+        }
+
+        &.selected {
+          background: rgba(124, 58, 237, 0.15);
+          border-color: rgba(139, 92, 246, 0.30);
+          color: #a78bfa;
+        }
+      }
+    }
+
+    // Stats
+    &__card-label {
+      color: $dark-text-muted;
+    }
+
+    &__stats {
+      div:not(:first-child) {
+        border-color: $dark-border;
+      }
+
+      strong {
+        color: #a78bfa;
+      }
+
+      span {
+        color: $dark-text-muted;
+      }
+    }
+
+    // Tips
+    &__tips {
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(124, 58, 237, 0.18),
+          transparent 45%
+        ),
+        $dark-surface;
+    }
+
+    &__tips h3 {
+      color: $dark-text-primary;
+    }
+
+    &__tips p {
+      color: $dark-text-secondary;
+    }
+
+    &__tips a {
+      color: #a78bfa;
+    }
+  }
+}
+
+// =====================================================
+// TABLET
+// =====================================================
+
+@include respond-tablet {
+  .profile-page {
+    &__layout {
+      grid-template-columns: 1fr;
+    }
+
+    &__aside {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+// =====================================================
+// MOBILE
+// =====================================================
+
+@include respond-mobile {
+  .profile-page {
+    &__header {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    &__header h1 {
+      font-size: $font-2xl;
+    }
+
+    &__edit-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    &__identity-card {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    &__member {
+      align-items: flex-start;
+    }
+
+    &__details {
+      grid-template-columns: 1fr;
+    }
+
+    &__fields {
+      grid-template-columns: 1fr;
+    }
+
+    &__field.full {
+      grid-column: auto;
+    }
+
+    &__aside {
+      display: flex;
+    }
+
+    &__form-actions {
+      flex-direction: column-reverse;
+
+      button {
+        width: 100%;
+      }
+    }
+
+    &__card {
+      padding: 19px;
+    }
+  }
+}
+
+.profile-page__logout-section {
+  margin-top: 28px;
+  padding: 22px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  background: $color-surface;
+  border: 1px solid rgba(224, 82, 82, 0.16);
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    margin: 0 0 5px;
+
+    color: $color-text-primary;
+    font-size: $font-lg;
+    font-weight: $weight-semibold;
+  }
+
+  p {
+    margin: 0;
+
+    color: $color-text-secondary;
+    font-size: $font-sm;
+  }
+}
+
+.profile-page__logout-btn {
+  flex-shrink: 0;
+
+  padding: 10px 18px;
+
+  color: $color-danger;
+  background: transparent;
+
+  border: 1px solid rgba(224, 82, 82, 0.28);
+  border-radius: $radius-md;
+
+  font-family: $font-family;
+  font-size: $font-sm;
+  font-weight: $weight-semibold;
+
+  cursor: pointer;
+
+  transition:
+    background $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    color: #fff;
+    background: $color-danger;
+    border-color: $color-danger;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+[data-theme="dark"] {
+  .profile-page__logout-section {
+    background: $dark-surface;
+    border-color: rgba(224, 82, 82, 0.22);
+    box-shadow: $dark-shadow-sm;
+
+    h3 {
+      color: $dark-text-primary;
+    }
+
+    p {
+      color: $dark-text-secondary;
+    }
+  }
+
+  .profile-page__logout-btn {
+    color: #f08080;
+    border-color: rgba(224, 82, 82, 0.32);
+
+    &:hover {
+      color: #fff;
+      background: $color-danger;
+      border-color: $color-danger;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-page__logout-section {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .profile-page__logout-btn {
+    width: 100%;
+  }
+}

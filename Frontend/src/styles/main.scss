@@ -1,0 +1,12 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "./reset";
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}

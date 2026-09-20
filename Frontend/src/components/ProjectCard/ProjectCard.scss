@@ -1,0 +1,344 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+
+// ========================================
+// PROJECT CARD
+// ========================================
+
+.project-card {
+  min-width: 0;
+
+  padding: 20px;
+
+  @include glow-card;
+
+  position: relative;
+
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
+  }
+}
+
+.project-card__action {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.project-card__view {
+  color: $color-primary;
+  font-size: 11px;
+  font-weight: $weight-semibold;
+  white-space: nowrap;
+  transition:
+    color $transition-fast,
+    transform $transition-fast;
+
+  .project-card:hover & {
+    transform: translateX(2px);
+  }
+}
+
+
+
+// ========================================
+// HEADER
+// ========================================
+
+.project-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-bottom: 14px;
+}
+
+.project-card__category {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 25px;
+
+  padding: 0 9px;
+
+  border-radius: 7px;
+
+  background: rgba(124, 58, 237, 0.08);
+
+  color: $color-primary;
+
+  font-size: 0.62rem;
+  font-weight: $weight-semibold;
+
+  border: 1px solid rgba(124, 58, 237, 0.08);
+}
+
+.project-card__menu {
+  width: 28px;
+  height: 28px;
+
+  display: grid;
+  place-items: center;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: $color-text-muted;
+
+  font-size: 1rem;
+
+  transition:
+    background $transition-fast,
+    color $transition-fast;
+
+  &:hover {
+    background: $color-background-secondary;
+
+    color: $color-text-primary;
+  }
+}
+
+
+// ========================================
+// TITLE
+// ========================================
+
+.project-card__title {
+  margin: 0;
+
+  color: $color-text-primary;
+
+  font-size: $font-lg;
+  font-weight: $weight-bold;
+
+  line-height: 1.3;
+
+  letter-spacing: -0.025em;
+}
+
+
+// ========================================
+// DESCRIPTION
+// ========================================
+
+.project-card__description {
+  margin-top: 8px;
+
+  display: -webkit-box;
+  overflow: hidden;
+
+  color: $color-text-secondary;
+
+  font-size: 0.75rem;
+
+  line-height: 1.55;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
+// ========================================
+// SKILLS
+// ========================================
+
+.project-card__skills {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  margin-top: 16px;
+}
+
+.project-card__skills span {
+  padding: 5px 8px;
+
+  border-radius: 6px;
+
+  background: $color-background-secondary;
+
+  color: $color-text-secondary;
+
+  font-size: 0.61rem;
+  font-weight: $weight-medium;
+
+  border: 1px solid rgba(124, 58, 237, 0.05);
+}
+
+
+// ========================================
+// FOOTER
+// ========================================
+
+.project-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 19px;
+  padding-top: 15px;
+
+  border-top: 1px solid $color-border;
+}
+
+.project-card__members {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.project-card__avatars {
+  display: flex;
+  align-items: center;
+}
+
+.project-card__avatar {
+  width: 25px;
+  height: 25px;
+
+  display: grid;
+  place-items: center;
+
+  margin-left: -5px;
+
+  border: 2px solid $color-surface-solid;
+  border-radius: 50%;
+
+  background: $gradient-primary;
+
+  color: #ffffff;
+
+  font-size: 0.52rem;
+  font-weight: $weight-bold;
+}
+
+.project-card__avatar:first-child {
+  margin-left: 0;
+}
+
+.project-card__members > span {
+  color: $color-text-muted;
+
+  font-size: 0.62rem;
+}
+
+.project-card__deadline {
+  flex-shrink: 0;
+
+  color: $color-text-muted;
+
+  font-size: 0.62rem;
+}
+
+
+// ========================================
+// DARK THEME
+// ========================================
+
+[data-theme="dark"] {
+
+  .project-card__view {
+    color: #a78bfa;
+  }
+
+  .project-card {
+    @include dark-card;
+
+    background:
+      radial-gradient(
+        circle at 100% 0%,
+        rgba(124, 58, 237, 0.075),
+        transparent 32%
+      ),
+      $dark-surface;
+
+    border-color: $dark-border;
+
+    &:hover {
+      border-color: $dark-border-hover;
+
+      box-shadow: $dark-shadow-glow-hover;
+    }
+  }
+
+  .project-card__category {
+    background: rgba(139, 92, 246, 0.13);
+
+    border-color: rgba(139, 92, 246, 0.14);
+
+    color: #c4b5fd;
+  }
+
+  .project-card__menu {
+    color: $dark-text-muted;
+
+    &:hover {
+      background: $dark-surface-hover;
+
+      color: $dark-text-primary;
+    }
+  }
+
+  .project-card__title {
+    color: $dark-text-primary;
+  }
+
+  .project-card__description {
+    color: $dark-text-secondary;
+  }
+
+  .project-card__skills span {
+    background: rgba(139, 92, 246, 0.08);
+
+    border-color: rgba(139, 92, 246, 0.09);
+
+    color: $dark-text-secondary;
+  }
+
+  .project-card__footer {
+    border-top-color: $dark-border;
+  }
+
+  .project-card__avatar {
+    border-color: $dark-surface-solid;
+  }
+
+  .project-card__members > span,
+  .project-card__deadline {
+    color: $dark-text-muted;
+  }
+}
+
+
+// ========================================
+// MOBILE
+// ========================================
+
+@include respond-mobile {
+
+  .project-card {
+    padding: 17px;
+  }
+
+  .project-card__title {
+    font-size: $font-md;
+  }
+
+  .project-card__footer {
+    margin-top: 16px;
+  }
+}

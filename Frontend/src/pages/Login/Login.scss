@@ -1,0 +1,746 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.login-page {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow: hidden;
+  background: transparent;
+
+  &__theme-toggle {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    z-index: 10;
+  }
+
+  &__layout {
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+  }
+
+  // --------------------------------
+  // Decorative Glows
+  // --------------------------------
+
+  &__glow {
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+    filter: blur(80px);
+
+    pointer-events: none;
+    opacity: 0.5;
+
+    &--one {
+      top: -150px;
+      left: 35%;
+
+      background: rgba(124, 58, 237, 0.14);
+    }
+
+    &--two {
+      right: -150px;
+      bottom: -120px;
+
+      background: rgba(37, 99, 235, 0.12);
+    }
+  }
+
+  // --------------------------------
+  // Brand
+  // --------------------------------
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: $color-text-primary;
+    text-decoration: none;
+  }
+
+  &__brand-mark {
+    width: 37px;
+    height: 37px;
+
+    @include flex-center;
+
+    border-radius: 11px;
+
+    background: $gradient-primary;
+    color: #fff;
+
+    font-size: $font-md;
+    font-weight: $weight-bold;
+
+    box-shadow: 0 8px 22px rgba(124, 58, 237, 0.2);
+  }
+
+  &__brand strong {
+    font-size: $font-md;
+    font-weight: $weight-bold;
+  }
+
+  &__brand span {
+    display: block;
+
+    margin-top: 1px;
+
+    color: $color-text-muted;
+
+    font-size: 9px;
+  }
+
+  // --------------------------------
+  // Visual Side
+  // --------------------------------
+
+  &__visual {
+    position: relative;
+    z-index: 1;
+
+    min-height: 100vh;
+    padding: 42px 55px;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__visual-content {
+    max-width: 580px;
+    margin: auto 0;
+  }
+
+  &__eyebrow {
+    display: inline-flex;
+
+    padding: 6px 9px;
+
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 20px;
+
+    background: rgba(124, 58, 237, 0.06);
+    color: $color-primary;
+
+    font-size: 9px;
+    font-weight: $weight-bold;
+    letter-spacing: 0.1em;
+  }
+
+  &__visual-content h1 {
+    margin-top: 22px;
+
+    color: $color-text-primary;
+
+    font-size: clamp(38px, 4vw, 58px);
+    line-height: 1.08;
+    font-weight: $weight-extrabold;
+    letter-spacing: -0.04em;
+
+    span {
+      display: block;
+
+      background: $gradient-primary;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  &__visual-content > p {
+    max-width: 500px;
+
+    margin-top: 20px;
+
+    color: $color-text-secondary;
+
+    font-size: $font-md;
+    line-height: 1.7;
+  }
+
+  // --------------------------------
+  // Mini Card
+  // --------------------------------
+
+  &__mini-card {
+    width: fit-content;
+
+    margin-top: 32px;
+    padding: 13px 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    border: 1px solid rgba(124, 58, 237, 0.13);
+    border-radius: $radius-lg;
+
+    background: rgba(255, 255, 255, 0.5);
+
+    box-shadow: $shadow-sm;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  &__mini-icon {
+    width: 36px;
+    height: 36px;
+
+    @include flex-center;
+
+    border-radius: 10px;
+
+    background: rgba(124, 58, 237, 0.1);
+    color: $color-primary;
+  }
+
+  &__mini-card div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  &__mini-card strong {
+    color: $color-text-primary;
+    font-size: $font-xs;
+  }
+
+  &__mini-card span {
+    color: $color-text-muted;
+    font-size: 9px;
+  }
+
+  &__visual-footer {
+    display: flex;
+    justify-content: space-between;
+
+    color: $color-text-muted;
+    font-size: 9px;
+  }
+
+  // --------------------------------
+  // Form Side
+  // --------------------------------
+
+  &__form-section {
+    position: relative;
+    z-index: 2;
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    border-left: 1px solid rgba(232, 232, 239, 0.8);
+
+    background: rgba(255, 255, 255, 0.38);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  &__form-wrapper {
+    width: 100%;
+    max-width: 410px;
+  }
+
+  &__mobile-brand {
+    display: none;
+  }
+
+  // --------------------------------
+  // Form Header
+  // --------------------------------
+
+  &__form-header p {
+    color: $color-primary;
+
+    font-size: 10px;
+    font-weight: $weight-bold;
+    letter-spacing: 0.1em;
+  }
+
+  &__form-header h2 {
+    margin-top: 8px;
+
+    color: $color-text-primary;
+
+    font-size: $font-2xl;
+    font-weight: $weight-extrabold;
+  }
+
+  &__form-header span {
+    display: block;
+
+    margin-top: 7px;
+
+    color: $color-text-secondary;
+
+    font-size: $font-sm;
+    line-height: 1.5;
+  }
+
+  // --------------------------------
+  // Form
+  // --------------------------------
+
+  &__form {
+    margin-top: 29px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__field label,
+  &__label-row label {
+    margin-bottom: 7px;
+
+    color: $color-text-primary;
+
+    font-size: $font-xs;
+    font-weight: $weight-semibold;
+  }
+
+  &__label-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__forgot {
+    border: none;
+    background: transparent;
+
+    color: $color-primary;
+
+    font-size: 10px;
+    font-weight: $weight-semibold;
+
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // --------------------------------
+  // Inputs
+  // --------------------------------
+
+  &__input-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+  }
+
+  &__input-icon {
+    position: absolute;
+    left: 13px;
+
+    color: $color-text-muted;
+
+    font-size: $font-sm;
+
+    pointer-events: none;
+  }
+
+  &__input-wrapper input {
+    width: 100%;
+
+    padding: 12px 13px 12px 37px;
+
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.75);
+    color: $color-text-primary;
+
+    font-family: $font-family;
+    font-size: $font-sm;
+
+    transition:
+      border-color $transition-fast,
+      box-shadow $transition-fast,
+      background $transition-fast;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    &:focus {
+      border-color: $color-primary;
+
+      background: $color-surface;
+
+      box-shadow:
+        0 0 0 3px rgba(124, 58, 237, 0.08);
+    }
+  }
+
+  &__password-toggle {
+    position: absolute;
+    right: 11px;
+
+    border: none;
+    background: transparent;
+
+    color: $color-text-muted;
+
+    font-size: 9px;
+    font-weight: $weight-semibold;
+
+    cursor: pointer;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  // --------------------------------
+  // Remember
+  // --------------------------------
+
+  &__remember {
+    width: fit-content;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: $color-text-secondary;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    input {
+      width: 14px;
+      height: 14px;
+
+      accent-color: $color-primary;
+
+      cursor: pointer;
+    }
+  }
+
+  // --------------------------------
+  // Submit
+  // --------------------------------
+
+  &__submit {
+    @include gradient-button;
+
+    width: 100%;
+
+    padding: 12px 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border-radius: $radius-md;
+
+    font-size: $font-sm;
+    font-weight: $weight-semibold;
+
+    span {
+      font-size: 14px;
+    }
+  }
+
+  // --------------------------------
+  // Divider
+  // --------------------------------
+
+  &__divider {
+    margin: 25px 0 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &::before,
+    &::after {
+      content: "";
+
+      height: 1px;
+      flex: 1;
+
+      background: $color-border;
+    }
+
+    span {
+      color: $color-text-muted;
+
+      font-size: 9px;
+      font-weight: $weight-semibold;
+    }
+  }
+
+  // --------------------------------
+  // Signup
+  // --------------------------------
+
+  &__signup {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+
+    font-size: $font-xs;
+
+    span {
+      color: $color-text-secondary;
+    }
+
+    a {
+      color: $color-primary;
+
+      font-weight: $weight-semibold;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__terms {
+    margin-top: 25px;
+
+    color: $color-text-muted;
+
+    text-align: center;
+
+    font-size: 9px;
+    line-height: 1.5;
+  }
+}
+
+// =====================================================
+// DARK THEME
+// =====================================================
+
+[data-theme="dark"] {
+  .login-page {
+    background: transparent;
+
+    &__brand {
+      color: $dark-text-primary;
+    }
+
+    &__brand span {
+      color: $dark-text-muted;
+    }
+
+    &__visual-content h1 {
+      color: $dark-text-primary;
+    }
+
+    &__visual-content > p {
+      color: $dark-text-secondary;
+    }
+
+    &__eyebrow {
+      background: rgba(124, 58, 237, 0.12);
+      border-color: $dark-border;
+      color: #a78bfa;
+    }
+
+    &__mini-card {
+      background: $dark-surface;
+      border-color: $dark-border;
+      box-shadow: $dark-shadow-sm;
+    }
+
+    &__mini-card strong {
+      color: $dark-text-primary;
+    }
+
+    &__mini-card span {
+      color: $dark-text-muted;
+    }
+
+    &__mini-icon {
+      background: rgba(124, 58, 237, 0.14);
+      color: #a78bfa;
+    }
+
+    &__visual-footer {
+      color: $dark-text-muted;
+    }
+
+    &__form-section {
+      border-left-color: $dark-border;
+      background: rgba(15, 16, 32, 0.55);
+    }
+
+    &__form-header h2 {
+      color: $dark-text-primary;
+    }
+
+    &__form-header span {
+      color: $dark-text-secondary;
+    }
+
+    &__field label,
+    &__label-row label {
+      color: $dark-text-primary;
+    }
+
+    &__input-icon {
+      color: $dark-text-muted;
+    }
+
+    &__input-wrapper input {
+      border-color: $dark-border;
+      background: $dark-surface-solid;
+      color: $dark-text-primary;
+
+      &::placeholder {
+        color: $dark-text-muted;
+      }
+
+      &:focus {
+        border-color: rgba(139, 92, 246, 0.6);
+        background: $dark-surface-solid;
+
+        box-shadow:
+          0 0 0 3px rgba(124, 58, 237, 0.12);
+      }
+    }
+
+    &__password-toggle {
+      color: $dark-text-muted;
+
+      &:hover {
+        color: #a78bfa;
+      }
+    }
+
+    &__remember {
+      color: $dark-text-secondary;
+    }
+
+    &__divider {
+      &::before,
+      &::after {
+        background: $dark-border;
+      }
+
+      span {
+        color: $dark-text-muted;
+      }
+    }
+
+    &__signup {
+      span {
+        color: $dark-text-secondary;
+      }
+    }
+
+    &__terms {
+      color: $dark-text-muted;
+    }
+  }
+}
+
+// =====================================================
+// TABLET
+// =====================================================
+
+@include respond-tablet {
+  .login-page {
+    &__layout {
+      grid-template-columns: 0.8fr 1fr;
+    }
+
+    &__visual {
+      padding: 35px;
+    }
+
+    &__form-section {
+      padding: 30px;
+    }
+  }
+}
+
+// =====================================================
+// MOBILE
+// =====================================================
+
+@include respond-mobile {
+  .login-page {
+    &__layout {
+      display: block;
+    }
+
+    &__visual {
+      display: none;
+    }
+
+    &__form-section {
+      min-height: 100vh;
+
+      padding: 25px 20px;
+
+      border-left: none;
+
+      background: transparent;
+
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    &__theme-toggle {
+      top: 20px;
+      right: 20px;
+    }
+
+    &__mobile-brand {
+      position: absolute;
+
+      top: 25px;
+      left: 20px;
+
+      display: block;
+    }
+
+    &__mobile-brand .login-page__brand span {
+      display: none;
+    }
+
+    &__form-wrapper {
+      max-width: 440px;
+
+      margin: 65px auto 0;
+    }
+
+    &__form-header h2 {
+      font-size: $font-xl;
+    }
+
+    &__visual-footer {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,121 @@
+@use "./variables" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+html,
+body,
+#root {
+  min-width: 320px;
+  min-height: 100%;
+}
+
+
+body {
+  font-family: $font-family;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(124, 58, 237, 0.04),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 90%,
+      rgba(37, 99, 235, 0.035),
+      transparent 28%
+    ),
+    $color-background;
+
+  color: $color-text-primary;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transition:
+    background $transition-smooth,
+    color $transition-smooth;
+}
+
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+::selection {
+  background: rgba(124, 58, 237, 0.18);
+  color: $color-primary;
+}
+
+
+/* ========================================
+   DARK THEME
+======================================== */
+
+[data-theme="dark"] {
+
+  body {
+    background:
+      radial-gradient(
+        circle at 8% 12%,
+        $dark-glow-purple,
+        transparent 25%
+      ),
+      radial-gradient(
+        circle at 92% 85%,
+        $dark-glow-blue,
+        transparent 27%
+      ),
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(6, 182, 212, 0.025),
+        transparent 35%
+      ),
+      $dark-background;
+
+    color: $dark-text-primary;
+  }
+
+
+  ::selection {
+    background: rgba(139, 92, 246, 0.28);
+    color: $dark-text-primary;
+  }
+
+
+  input,
+  textarea,
+  select {
+    color-scheme: dark;
+  }
+}

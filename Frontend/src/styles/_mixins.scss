@@ -1,0 +1,202 @@
+@use "./variables" as *;
+
+
+// ========================================
+// LAYOUT MIXINS
+// ========================================
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+// ========================================
+// CARD SYSTEM
+// ========================================
+
+@mixin card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  transition:
+    background $transition-normal,
+    border-color $transition-normal,
+    box-shadow $transition-normal;
+}
+
+
+@mixin glow-card {
+  @include card;
+
+  transition:
+    transform $transition-smooth,
+    background $transition-normal,
+    border-color $transition-normal,
+    box-shadow $transition-normal;
+
+  &:hover {
+    transform: translateY(-4px);
+
+    border-color: $color-border-hover;
+
+    box-shadow: $shadow-glow-hover;
+  }
+}
+
+
+// ========================================
+// GRADIENTS
+// ========================================
+
+@mixin gradient-button {
+  background: $gradient-primary;
+  color: #ffffff;
+  border: none;
+
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-normal,
+    background $transition-normal;
+
+  &:hover {
+    background: $gradient-primary-hover;
+
+    transform: translateY(-2px);
+
+    box-shadow: $shadow-glow-hover;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+
+@mixin gradient-text {
+  background: $gradient-text;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+
+// ========================================
+// HOVER
+// ========================================
+
+@mixin hover-lift {
+  transition:
+    transform $transition-normal,
+    box-shadow $transition-normal;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-md;
+  }
+}
+
+
+// ========================================
+// THEME-AWARE INPUT
+// ========================================
+
+@mixin input {
+  width: 100%;
+
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+
+  background: $color-surface-solid;
+  color: $color-text-primary;
+
+  outline: none;
+
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast,
+    background $transition-normal,
+    color $transition-normal;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    border-color: rgba(124, 58, 237, 0.55);
+
+    box-shadow:
+      0 0 0 3px rgba(124, 58, 237, 0.08);
+  }
+}
+
+
+// ========================================
+// DARK THEME CARD
+// ========================================
+
+@mixin dark-card {
+  background: $dark-surface;
+  border-color: $dark-border;
+  box-shadow: $dark-shadow-sm;
+
+  &:hover {
+    border-color: $dark-border-hover;
+    box-shadow: $dark-shadow-glow-hover;
+  }
+}
+
+
+// ========================================
+// DARK THEME INPUT
+// ========================================
+
+@mixin dark-input {
+  background: $dark-surface-solid;
+  border-color: $dark-border;
+  color: $dark-text-primary;
+
+  &::placeholder {
+    color: $dark-text-muted;
+  }
+
+  &:focus {
+    border-color: rgba(139, 92, 246, 0.55);
+
+    box-shadow:
+      0 0 0 3px rgba(124, 58, 237, 0.12),
+      0 0 20px rgba(124, 58, 237, 0.06);
+  }
+}
+
+
+// ========================================
+// RESPONSIVE
+// ========================================
+
+@mixin respond-tablet {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+
+@mixin respond-mobile {
+  @media (max-width: 600px) {
+    @content;
+  }
+}

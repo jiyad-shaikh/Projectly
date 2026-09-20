@@ -1,0 +1,244 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+
+// ========================================
+// PAGE SHELL
+// ========================================
+
+.page-shell {
+  min-height: 100vh;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background: transparent;
+}
+
+
+// ========================================
+// AMBIENT GLOWS
+// ========================================
+
+.page-shell__glow {
+  position: fixed;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  filter: blur(80px);
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  opacity: 0.45;
+}
+
+.page-shell__glow--one {
+  top: -180px;
+  right: -100px;
+
+  background: $glow-purple;
+}
+
+.page-shell__glow--two {
+  bottom: -220px;
+  left: 20%;
+
+  background: $glow-blue;
+}
+
+
+// ========================================
+// MAIN
+// ========================================
+
+.page-shell__main {
+  min-height: 100vh;
+
+  margin-left: $sidebar-width;
+
+  position: relative;
+
+  z-index: 1;
+}
+
+.page-shell__content {
+  width: 100%;
+  max-width: $max-content-width;
+
+  margin: 0 auto;
+
+  padding: 42px 46px 60px;
+}
+
+
+// ========================================
+// MOBILE HEADER
+// ========================================
+
+.page-shell__mobile-header {
+  display: none;
+}
+
+.page-shell__mobile-logo {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: $color-text-primary;
+
+  font-size: $font-md;
+  font-weight: $weight-bold;
+}
+
+.page-shell__mobile-logo-mark {
+  width: 31px;
+  height: 31px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+
+  background: $gradient-primary;
+
+  color: #ffffff;
+
+  font-size: 0.8rem;
+  font-weight: $weight-bold;
+}
+
+.page-shell__menu-btn {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid $color-border;
+  border-radius: 10px;
+
+  background: $color-surface-solid;
+
+  color: $color-text-primary;
+
+  font-size: 1.1rem;
+
+  transition:
+    background $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast;
+
+  &:hover {
+    background: $color-background-secondary;
+
+    border-color: $color-border-hover;
+  }
+}
+
+
+// ========================================
+// DARK THEME
+// ========================================
+
+[data-theme="dark"] {
+
+  .page-shell {
+    background:
+      radial-gradient(
+        circle at 85% 5%,
+        rgba(124, 58, 237, 0.035),
+        transparent 28%
+      );
+  }
+
+  .page-shell__glow--one {
+    background: $dark-glow-purple;
+
+    opacity: 0.55;
+  }
+
+  .page-shell__glow--two {
+    background: $dark-glow-blue;
+
+    opacity: 0.45;
+  }
+
+  .page-shell__mobile-logo {
+    color: $dark-text-primary;
+  }
+
+  .page-shell__menu-btn {
+    background: $dark-surface-solid;
+
+    border-color: $dark-border;
+
+    color: $dark-text-primary;
+
+    &:hover {
+      background: $dark-surface-hover;
+
+      border-color: $dark-border-hover;
+    }
+  }
+}
+
+
+// ========================================
+// TABLET
+// ========================================
+
+@include respond-tablet {
+
+  .page-shell__main {
+    margin-left: 0;
+  }
+
+  .page-shell__mobile-header {
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 20px 28px 0;
+
+    box-sizing: content-box;
+  }
+
+  .page-shell__content {
+    padding: 30px 28px 50px;
+  }
+}
+
+
+// ========================================
+// MOBILE
+// ========================================
+
+@include respond-mobile {
+
+  .page-shell__mobile-header {
+    padding:
+      18px 16px 0;
+  }
+
+  .page-shell__content {
+    padding:
+      24px 16px 40px;
+  }
+
+  .page-shell__glow {
+    width: 260px;
+    height: 260px;
+
+    filter: blur(65px);
+  }
+}

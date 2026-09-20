@@ -1,0 +1,1419 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+
+// ========================================
+// MY PROJECTS PAGE
+// ========================================
+
+.my-projects-page {
+  width: 100%;
+
+  min-height: 100%;
+
+  background: transparent;
+
+  color: $color-text-primary;
+
+  transition:
+    background $transition-smooth,
+    color $transition-smooth;
+}
+
+
+// ========================================
+// HEADER
+// ========================================
+
+.my-projects-page__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 30px;
+}
+
+
+.my-projects-page__eyebrow {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 10px;
+
+  color: $color-primary;
+
+  font-size: 0.68rem;
+  font-weight: $weight-bold;
+
+  letter-spacing: 0.13em;
+}
+
+
+.my-projects-page__eyebrow::before {
+  content: "";
+
+  width: 22px;
+  height: 2px;
+
+  flex-shrink: 0;
+
+  border-radius: 999px;
+
+  background: $gradient-primary;
+}
+
+
+.my-projects-page__header h1 {
+  margin: 0;
+
+  color: $color-text-primary;
+
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: $weight-extrabold;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.04em;
+}
+
+
+.my-projects-page__subtitle {
+  max-width: 650px;
+
+  margin-top: 9px;
+
+  color: $color-text-secondary;
+
+  font-size: $font-sm;
+
+  line-height: 1.6;
+}
+
+
+// ========================================
+// CREATE PROJECT BUTTON
+// ========================================
+
+.my-projects-page__create-btn {
+  min-height: 44px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  padding: 0 18px;
+
+  border-radius: $radius-md;
+
+  font-size: $font-sm;
+  font-weight: $weight-semibold;
+
+  @include gradient-button;
+}
+
+
+// ========================================
+// SUMMARY
+// ========================================
+
+.my-projects-page__summary {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 34px;
+}
+
+
+.my-projects-page__summary-card {
+  min-height: 82px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 17px 19px;
+
+  @include card;
+
+  transition:
+    transform $transition-normal,
+    border-color $transition-normal,
+    box-shadow $transition-normal;
+
+  &:hover {
+    transform: translateY(-3px);
+
+    border-color: $color-border-hover;
+
+    box-shadow: $shadow-glow;
+  }
+}
+
+
+.my-projects-page__summary-icon {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.10),
+      rgba(37, 99, 235, 0.07)
+    );
+
+  border: 1px solid rgba(124, 58, 237, 0.08);
+
+  color: $color-primary;
+
+  font-size: $font-md;
+}
+
+
+.my-projects-page__summary-card > div:last-child {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.my-projects-page__summary-card strong {
+  color: $color-text-primary;
+
+  font-size: $font-xl;
+  font-weight: $weight-bold;
+
+  line-height: 1;
+}
+
+
+.my-projects-page__summary-card span {
+  color: $color-text-muted;
+
+  font-size: 0.68rem;
+}
+
+
+// ========================================
+// TABS
+// ========================================
+
+.my-projects-page__tabs {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-bottom: 28px;
+
+  border-bottom: 1px solid $color-border;
+
+  overflow-x: auto;
+
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+.my-projects-page__tab {
+  position: relative;
+
+  min-height: 42px;
+
+  display: inline-flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  padding: 0 13px;
+
+  border: none;
+
+  background: transparent;
+
+  color: $color-text-muted;
+
+  font-size: $font-sm;
+  font-weight: $weight-semibold;
+
+  transition:
+    color $transition-fast,
+    background $transition-fast;
+
+  &:hover {
+    color: $color-text-primary;
+  }
+
+  span {
+    margin-left: 7px;
+
+    padding: 3px 7px;
+
+    border-radius: 999px;
+
+    background: $color-background-secondary;
+
+    color: $color-text-muted;
+
+    font-size: 0.6rem;
+
+    line-height: 1;
+  }
+
+  &.active {
+    color: $color-primary;
+
+    &::after {
+      content: "";
+
+      position: absolute;
+
+      left: 8px;
+      right: 8px;
+      bottom: -1px;
+
+      height: 2px;
+
+      border-radius: 999px;
+
+      background: $gradient-primary;
+    }
+
+    span {
+      background: rgba(124, 58, 237, 0.10);
+
+      color: $color-primary;
+    }
+  }
+}
+
+
+// ========================================
+// CONTENT
+// ========================================
+
+.my-projects-page__content {
+  width: 100%;
+}
+
+
+.my-projects-page__section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 17px;
+}
+
+
+.my-projects-page__section-heading h2 {
+  color: $color-text-primary;
+
+  font-size: $font-xl;
+  font-weight: $weight-bold;
+
+  letter-spacing: -0.025em;
+}
+
+
+.my-projects-page__section-heading p {
+  margin-top: 4px;
+
+  color: $color-text-muted;
+
+  font-size: $font-xs;
+}
+
+
+// ========================================
+// PROJECT LIST
+// ========================================
+
+.my-projects-page__list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+
+// ========================================
+// PROJECT CARD
+// ========================================
+
+.my-project-card {
+  padding: 22px;
+
+  @include card;
+
+  transition:
+    transform $transition-smooth,
+    border-color $transition-normal,
+    box-shadow $transition-normal;
+
+  &:hover {
+    transform: translateY(-3px);
+
+    border-color: $color-border-hover;
+
+    box-shadow: $shadow-glow;
+  }
+}
+
+
+// ========================================
+// CARD TOP
+// ========================================
+
+.my-project-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+
+.my-project-card__title-area {
+  min-width: 0;
+
+  display: flex;
+
+  gap: 13px;
+}
+
+
+.my-project-card__icon {
+  width: 43px;
+  height: 43px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.12),
+      rgba(37, 99, 235, 0.09)
+    );
+
+  border: 1px solid rgba(124, 58, 237, 0.08);
+
+  color: $color-primary;
+
+  font-size: $font-md;
+}
+
+
+// ========================================
+// BADGES
+// ========================================
+
+.my-project-card__badges {
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+
+.my-project-card__category {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 22px;
+
+  padding: 3px 8px;
+
+  border: 1px solid rgba(124, 58, 237, 0.08);
+  border-radius: 999px;
+
+  background: rgba(124, 58, 237, 0.08);
+
+  color: $color-primary;
+
+  font-size: 0.61rem;
+  font-weight: $weight-semibold;
+}
+
+
+.my-project-card__status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  font-size: 0.61rem;
+  font-weight: $weight-semibold;
+}
+
+
+.my-project-card__status > span {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+}
+
+
+.my-project-card__status--active {
+  color: $color-success;
+
+  > span {
+    background: $color-success;
+  }
+}
+
+
+.my-project-card__status--completed {
+  color: $color-text-muted;
+
+  > span {
+    background: $color-text-muted;
+  }
+}
+
+
+// ========================================
+// CARD TITLE
+// ========================================
+
+.my-project-card__title-area h3 {
+  margin-top: 9px;
+
+  color: $color-text-primary;
+
+  font-size: $font-lg;
+  font-weight: $weight-bold;
+
+  line-height: 1.3;
+
+  letter-spacing: -0.025em;
+}
+
+
+.my-project-card__title-area p {
+  max-width: 720px;
+
+  margin-top: 6px;
+
+  color: $color-text-secondary;
+
+  font-size: $font-sm;
+
+  line-height: 1.55;
+}
+
+
+// ========================================
+// ROLE
+// ========================================
+
+.my-project-card__role {
+  height: fit-content;
+
+  flex-shrink: 0;
+
+  padding: 6px 10px;
+
+  border: 1px solid $color-border;
+  border-radius: 999px;
+
+  color: $color-text-muted;
+
+  font-size: 0.61rem;
+  font-weight: $weight-semibold;
+}
+
+
+.my-project-card__role.owner {
+  border-color: rgba(124, 58, 237, 0.16);
+
+  background: rgba(124, 58, 237, 0.06);
+
+  color: $color-primary;
+}
+
+
+// ========================================
+// SKILLS
+// ========================================
+
+.my-project-card__skills {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin-top: 18px;
+
+  padding-left: 56px;
+}
+
+
+.my-project-card__skills span {
+  padding: 5px 8px;
+
+  border: 1px solid $color-border;
+  border-radius: 6px;
+
+  background: $color-background-secondary;
+
+  color: $color-text-secondary;
+
+  font-size: 0.63rem;
+  font-weight: $weight-medium;
+}
+
+
+// ========================================
+// CARD BOTTOM
+// ========================================
+
+.my-project-card__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-top: 20px;
+  padding-top: 16px;
+
+  border-top: 1px solid $color-border;
+}
+
+
+.my-project-card__meta {
+  display: flex;
+  align-items: center;
+
+  gap: 28px;
+}
+
+
+.my-project-card__team {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: $color-text-muted;
+
+  font-size: 0.63rem;
+}
+
+
+.my-project-card__avatars {
+  display: flex;
+  align-items: center;
+}
+
+
+.my-project-card__avatar {
+  width: 26px;
+  height: 26px;
+
+  display: grid;
+  place-items: center;
+
+  margin-left: -5px;
+
+  border: 2px solid $color-surface-solid;
+  border-radius: 50%;
+
+  background: $gradient-primary;
+
+  color: #ffffff;
+
+  font-size: 0.5rem;
+  font-weight: $weight-bold;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+
+// ========================================
+// DEADLINE
+// ========================================
+
+.my-project-card__deadline {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.my-project-card__deadline span {
+  color: $color-text-muted;
+
+  font-size: 0.52rem;
+  font-weight: $weight-bold;
+
+  letter-spacing: 0.08em;
+}
+
+
+.my-project-card__deadline strong {
+  color: $color-text-secondary;
+
+  font-size: 0.63rem;
+  font-weight: $weight-semibold;
+}
+
+
+// ========================================
+// ACTIONS
+// ========================================
+
+.my-project-card__actions {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+
+.my-project-card__view,
+.my-project-card__manage,
+.my-project-card__delete {
+  min-height: 34px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 11px;
+
+  border-radius: $radius-md;
+
+  font-size: 0.63rem;
+  font-weight: $weight-semibold;
+
+  transition:
+    background $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast,
+    transform $transition-fast;
+}
+
+
+// View
+
+.my-project-card__view {
+  border: 1px solid $color-border;
+
+  background: $color-surface;
+
+  color: $color-text-secondary;
+
+  &:hover {
+    border-color: $color-border-hover;
+
+    color: $color-text-primary;
+
+    transform: translateY(-1px);
+  }
+}
+
+
+// Manage
+
+.my-project-card__manage {
+  border: 1px solid rgba(124, 58, 237, 0.16);
+
+  background: rgba(124, 58, 237, 0.06);
+
+  color: $color-primary;
+
+  &:hover {
+    background: rgba(124, 58, 237, 0.11);
+
+    transform: translateY(-1px);
+  }
+}
+
+
+// Delete
+
+.my-project-card__delete {
+  border: 1px solid rgba(224, 82, 82, 0.18);
+
+  background: transparent;
+
+  color: $color-danger;
+
+  &:hover {
+    background: rgba(224, 82, 82, 0.07);
+
+    transform: translateY(-1px);
+  }
+}
+
+
+// ========================================
+// EMPTY STATE
+// ========================================
+
+.my-projects-page__empty {
+  min-height: 280px;
+
+  padding: 55px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  border: 1px dashed $color-border;
+  border-radius: $radius-xl;
+
+  background: rgba(255, 255, 255, 0.45);
+}
+
+
+.my-projects-page__empty-icon {
+  width: 52px;
+  height: 52px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.10),
+      rgba(37, 99, 235, 0.07)
+    );
+
+  color: $color-primary;
+
+  font-size: $font-xl;
+}
+
+
+.my-projects-page__empty h3 {
+  margin-top: 15px;
+
+  color: $color-text-primary;
+
+  font-size: $font-lg;
+  font-weight: $weight-bold;
+}
+
+
+.my-projects-page__empty p {
+  max-width: 400px;
+
+  margin-top: 6px;
+
+  color: $color-text-muted;
+
+  font-size: $font-sm;
+}
+
+
+.my-projects-page__empty a {
+  margin-top: 17px;
+
+  color: $color-primary;
+
+  font-size: $font-sm;
+  font-weight: $weight-semibold;
+
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-hover;
+
+    text-decoration: underline;
+  }
+}
+
+
+// ========================================
+// DARK THEME
+// ========================================
+
+[data-theme="dark"] {
+
+  .my-projects-page {
+    color: $dark-text-primary;
+  }
+
+
+  // Header
+
+  .my-projects-page__eyebrow {
+    color: #a78bfa;
+  }
+
+
+  .my-projects-page__header h1 {
+    color: $dark-text-primary;
+  }
+
+
+  .my-projects-page__subtitle {
+    color: $dark-text-secondary;
+  }
+
+
+  .my-projects-page__create-btn {
+    box-shadow:
+      0 8px 25px rgba(124, 58, 237, 0.20);
+  }
+
+
+  // Summary
+
+  .my-projects-page__summary-card {
+    @include dark-card;
+
+    background:
+      radial-gradient(
+        circle at 100% 0%,
+        rgba(124, 58, 237, 0.07),
+        transparent 38%
+      ),
+      $dark-surface;
+
+    border-color: $dark-border;
+
+    &:hover {
+      border-color: $dark-border-hover;
+
+      box-shadow: $dark-shadow-glow-hover;
+    }
+  }
+
+
+  .my-projects-page__summary-icon {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(124, 58, 237, 0.16),
+        rgba(37, 99, 235, 0.09)
+      );
+
+    border-color: rgba(139, 92, 246, 0.13);
+
+    color: #c4b5fd;
+  }
+
+
+  .my-projects-page__summary-card strong {
+    color: $dark-text-primary;
+  }
+
+
+  .my-projects-page__summary-card span {
+    color: $dark-text-muted;
+  }
+
+
+  // Tabs
+
+  .my-projects-page__tabs {
+    border-bottom-color: $dark-border;
+  }
+
+
+  .my-projects-page__tab {
+    color: $dark-text-muted;
+
+    &:hover {
+      color: $dark-text-primary;
+    }
+
+    span {
+      background: $dark-surface-solid;
+
+      color: $dark-text-muted;
+    }
+
+    &.active {
+      color: #a78bfa;
+
+      span {
+        background: rgba(139, 92, 246, 0.12);
+
+        color: #c4b5fd;
+      }
+    }
+  }
+
+
+  // Section heading
+
+  .my-projects-page__section-heading h2 {
+    color: $dark-text-primary;
+  }
+
+
+  .my-projects-page__section-heading p {
+    color: $dark-text-muted;
+  }
+
+
+  // Project card
+
+  .my-project-card {
+    @include dark-card;
+
+    background:
+      radial-gradient(
+        circle at 100% 0%,
+        rgba(124, 58, 237, 0.065),
+        transparent 35%
+      ),
+      $dark-surface;
+
+    border-color: $dark-border;
+
+    &:hover {
+      border-color: $dark-border-hover;
+
+      box-shadow: $dark-shadow-glow-hover;
+    }
+  }
+
+
+  .my-project-card__icon {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(124, 58, 237, 0.17),
+        rgba(37, 99, 235, 0.10)
+      );
+
+    border-color: rgba(139, 92, 246, 0.13);
+
+    color: #c4b5fd;
+  }
+
+
+  .my-project-card__category {
+    background: rgba(139, 92, 246, 0.12);
+
+    border-color: rgba(139, 92, 246, 0.13);
+
+    color: #c4b5fd;
+  }
+
+
+  .my-project-card__title-area h3 {
+    color: $dark-text-primary;
+  }
+
+
+  .my-project-card__title-area p {
+    color: $dark-text-secondary;
+  }
+
+
+  .my-project-card__role {
+    border-color: $dark-border;
+
+    color: $dark-text-muted;
+  }
+
+
+  .my-project-card__role.owner {
+    background: rgba(139, 92, 246, 0.10);
+
+    border-color: rgba(139, 92, 246, 0.18);
+
+    color: #c4b5fd;
+  }
+
+
+  .my-project-card__skills span {
+    background: rgba(139, 92, 246, 0.07);
+
+    border-color: rgba(139, 92, 246, 0.10);
+
+    color: $dark-text-secondary;
+  }
+
+
+  .my-project-card__bottom {
+    border-top-color: $dark-border;
+  }
+
+
+  .my-project-card__avatar {
+    border-color: $dark-surface-solid;
+  }
+
+
+  .my-project-card__team {
+    color: $dark-text-muted;
+  }
+
+
+  .my-project-card__deadline span {
+    color: $dark-text-muted;
+  }
+
+
+  .my-project-card__deadline strong {
+    color: $dark-text-secondary;
+  }
+
+
+  // Actions
+
+  .my-project-card__view {
+    background: $dark-surface-solid;
+
+    border-color: $dark-border;
+
+    color: $dark-text-secondary;
+
+    &:hover {
+      background: $dark-surface-hover;
+
+      border-color: $dark-border-hover;
+
+      color: $dark-text-primary;
+    }
+  }
+
+
+  .my-project-card__manage {
+    background: rgba(139, 92, 246, 0.09);
+
+    border-color: rgba(139, 92, 246, 0.16);
+
+    color: #c4b5fd;
+
+    &:hover {
+      background: rgba(139, 92, 246, 0.15);
+    }
+  }
+
+
+  .my-project-card__delete {
+    border-color: rgba(224, 82, 82, 0.22);
+
+    color: #f08080;
+
+    &:hover {
+      background: rgba(224, 82, 82, 0.10);
+    }
+  }
+
+
+  // Empty
+
+  .my-projects-page__empty {
+    background: rgba(15, 16, 32, 0.45);
+
+    border-color: $dark-border;
+  }
+
+
+  .my-projects-page__empty-icon {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(124, 58, 237, 0.16),
+        rgba(37, 99, 235, 0.09)
+      );
+
+    color: #c4b5fd;
+  }
+
+
+  .my-projects-page__empty h3 {
+    color: $dark-text-primary;
+  }
+
+
+  .my-projects-page__empty p {
+    color: $dark-text-muted;
+  }
+
+
+  .my-projects-page__empty a {
+    color: #a78bfa;
+
+    &:hover {
+      color: #c4b5fd;
+    }
+  }
+}
+
+
+// ========================================
+// TABLET
+// ========================================
+
+@include respond-tablet {
+
+  .my-projects-page__summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+
+  .my-project-card__skills {
+    padding-left: 0;
+  }
+
+
+  .my-project-card__bottom {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .my-project-card__actions {
+    width: 100%;
+  }
+}
+
+
+// ========================================
+// MOBILE
+// ========================================
+
+@include respond-mobile {
+
+  .my-projects-page__header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 18px;
+
+    margin-bottom: 26px;
+  }
+
+
+  .my-projects-page__header h1 {
+    font-size: $font-2xl;
+  }
+
+
+  .my-projects-page__subtitle {
+    font-size: 0.8rem;
+  }
+
+
+  .my-projects-page__create-btn {
+    width: 100%;
+  }
+
+
+  .my-projects-page__summary {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 28px;
+  }
+
+
+  .my-projects-page__summary-card {
+    min-height: 74px;
+
+    padding: 15px 17px;
+  }
+
+
+  .my-projects-page__tabs {
+    margin-bottom: 24px;
+  }
+
+
+  .my-projects-page__tab {
+    min-height: 40px;
+
+    padding: 0 10px;
+
+    font-size: 0.76rem;
+  }
+
+
+  .my-projects-page__section-heading {
+    margin-bottom: 14px;
+  }
+
+
+  .my-projects-page__section-heading h2 {
+    font-size: $font-lg;
+  }
+
+
+  .my-project-card {
+    padding: 17px;
+  }
+
+
+  .my-project-card__top {
+    flex-direction: column;
+
+    gap: 14px;
+  }
+
+
+  .my-project-card__title-area {
+    gap: 10px;
+  }
+
+
+  .my-project-card__icon {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 10px;
+  }
+
+
+  .my-project-card__title-area h3 {
+    font-size: $font-md;
+  }
+
+
+  .my-project-card__title-area p {
+    font-size: $font-xs;
+  }
+
+
+  .my-project-card__role {
+    align-self: flex-start;
+  }
+
+
+  .my-project-card__skills {
+    margin-top: 15px;
+
+    padding-left: 0;
+  }
+
+
+  .my-project-card__bottom {
+    margin-top: 17px;
+
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+
+  .my-project-card__meta {
+    width: 100%;
+
+    justify-content: space-between;
+
+    gap: 15px;
+  }
+
+
+  .my-project-card__actions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    width: 100%;
+  }
+
+
+  .my-project-card__view,
+  .my-project-card__manage,
+  .my-project-card__delete {
+    width: 100%;
+
+    text-align: center;
+  }
+
+
+  .my-project-card__delete {
+    grid-column: 1 / -1;
+  }
+
+
+  .my-projects-page__empty {
+    min-height: 250px;
+
+    padding: 45px 20px;
+  }
+
+
+  .my-projects-page__empty p {
+    max-width: 300px;
+
+    font-size: 0.8rem;
+  }
+}
+
+.my-project-card__delete {
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+.my-projects-page__error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  border: 1px solid rgba(224, 82, 82, 0.2);
+  border-radius: $radius-md;
+  background: rgba(224, 82, 82, 0.06);
+  color: $color-danger;
+  font-size: $font-sm;
+
+  button {
+    border: none;
+    background: transparent;
+    color: inherit;
+    font-weight: $weight-semibold;
+    cursor: pointer;
+  }
+}
+
+[data-theme="dark"] {
+  .my-projects-page__error {
+    border-color: rgba(224, 82, 82, 0.25);
+    background: rgba(224, 82, 82, 0.08);
+    color: #ff8b8b;
+  }
+}
