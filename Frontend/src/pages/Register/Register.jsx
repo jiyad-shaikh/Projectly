@@ -413,39 +413,55 @@ function Register() {
 
                 <div className="register-page__skills">
 
-                  {skillOptions.map((skill) => {
-                    const selected = selectedSkills.includes(skill);
+                {/* PREDEFINED SKILLS */}
+                {skillOptions.map((skill) => {
+                  const selected = selectedSkills.includes(skill);
 
-                    return (
-                      <button
-                        key={skill}
-                        type="button"
-                        className={
-                          selected
-                            ? "register-page__skill active"
-                            : "register-page__skill"
-                        }
-                        onClick={() => toggleSkill(skill)}
-                      >
-                        {selected && <span>✓</span>}
-                        {skill}
-                      </button>
-                    );
-                  })}
-
-                  {/* CUSTOM SKILL BUTTON */}
-                  {!showCustomSkillInput && selectedSkills.length < 4 && (
+                  return (
                     <button
+                      key={skill}
                       type="button"
-                      className="register-page__skill register-page__skill--custom"
-                      onClick={() => setShowCustomSkillInput(true)}
+                      className={
+                        selected
+                          ? "register-page__skill active"
+                          : "register-page__skill"
+                      }
+                      onClick={() => toggleSkill(skill)}
                     >
-                      <span>+</span>
-                      Add skill
+                      {selected && <span>✓</span>}
+                      {skill}
                     </button>
-                  )}
+                  );
+                })}
 
-                </div>
+  {/* CUSTOM SKILLS */}
+  {selectedSkills
+    .filter((skill) => !skillOptions.includes(skill))
+    .map((skill) => (
+      <button
+        key={skill}
+        type="button"
+        className="register-page__skill active"
+        onClick={() => toggleSkill(skill)}
+      >
+        <span>✓</span>
+        {skill}
+      </button>
+    ))}
+
+  {/* ADD SKILL */}
+  {!showCustomSkillInput && selectedSkills.length < 4 && (
+    <button
+      type="button"
+      className="register-page__skill register-page__skill--custom"
+      onClick={() => setShowCustomSkillInput(true)}
+    >
+      <span>+</span>
+      Add skill
+    </button>
+  )}
+
+</div>
 
                 {/* CUSTOM SKILL INPUT */}
                 {showCustomSkillInput && (

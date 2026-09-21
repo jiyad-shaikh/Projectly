@@ -44,6 +44,8 @@ function CreateProject() {
   });
 
   const [selectedSkills, setSelectedSkills] = useState([]);
+  const [customSkill, setCustomSkill] = useState("");
+  const [showCustomSkillInput, setShowCustomSkillInput] = useState(false);
 
   const [created, setCreated] = useState(false);
   const [createdProjectId, setCreatedProjectId] = useState(null);
@@ -66,18 +68,49 @@ function CreateProject() {
   };
 
   const toggleSkill = (skill) => {
-    setSelectedSkills((previous) => {
-      if (previous.includes(skill)) {
-        return previous.filter((item) => item !== skill);
-      }
-
-      return [...previous, skill];
-    });
-
-    if (error) {
-      setError("");
+  setSelectedSkills((previous) => {
+    if (previous.includes(skill)) {
+      return previous.filter((item) => item !== skill);
     }
-  };
+
+    if (previous.length >= 4) {
+      setError("You can select up to 4 skills.");
+      return previous;
+    }
+
+    return [...previous, skill];
+  });
+
+  if (error) {
+    setError("");
+  }
+};
+
+  const addCustomSkill = () => {
+  const skill = customSkill.trim();
+
+  if (!skill) return;
+
+  if (selectedSkills.length >= 4) {
+    setError("You can select up to 4 skills.");
+    return;
+  }
+
+  const alreadyExists = selectedSkills.some(
+    (item) => item.toLowerCase() === skill.toLowerCase()
+  );
+
+  if (alreadyExists) {
+    setError("This skill has already been added.");
+    return;
+  }
+
+  setSelectedSkills((previous) => [...previous, skill]);
+
+  setCustomSkill("");
+  setShowCustomSkillInput(false);
+  setError("");
+};
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -134,8 +167,10 @@ function CreateProject() {
     });
 
     setSelectedSkills([]);
+    setCustomSkill("");
+    setShowCustomSkillInput(false);
     setError("");
-  };
+    };
 
   return (
     <PageShell
@@ -391,10 +426,9 @@ function CreateProject() {
 
               <div className="create-project-page__skills">
 
+                {/* PREDEFINED SKILLS */}
                 {availableSkills.map((skill) => {
-
-                  const selected =
-                    selectedSkills.includes(skill);
+                  const selected = selectedSkills.includes(skill);
 
                   return (
                     <button
@@ -407,7 +441,6 @@ function CreateProject() {
                       }
                       onClick={() => toggleSkill(skill)}
                     >
-
                       {selected && (
                         <span className="check">
                           ✓
@@ -415,13 +448,82 @@ function CreateProject() {
                       )}
 
                       {skill}
-
                     </button>
                   );
-
                 })}
 
+                {/* CUSTOM SKILLS */}
+                {selectedSkills
+                  .filter((skill) => !availableSkills.includes(skill))
+                  .map((skill) => (
+                    <button
+                      type="button"
+                      key={skill}
+                      className="create-project-page__skill active"
+                      onClick={() => toggleSkill(skill)}
+                    >
+                      <span className="check">
+                        ✓
+                      </span>
+
+                      {skill}
+                    </button>
+                  ))}
+
+                {/* ADD CUSTOM SKILL */}
+                {!showCustomSkillInput && selectedSkills.length < 4 && (
+                  <button
+                    type="button"
+                    className="create-project-page__skill create-project-page__skill--custom"
+                    onClick={() => setShowCustomSkillInput(true)}
+                  >
+                    <span>+</span>
+                    Add skill
+                  </button>
+                )}
+
               </div>
+
+              {showCustomSkillInput && (
+                <div className="create-project-page__custom-skill">
+
+                  <input
+                    type="text"
+                    placeholder="Enter a skill, e.g. Docker"
+                    value={customSkill}
+                    onChange={(event) => {
+                      setCustomSkill(event.target.value);
+                      setError("");
+                    }}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        event.preventDefault();
+                        addCustomSkill();
+                      }
+                    }}
+                    autoFocus
+                  />
+
+                  <button
+                    type="button"
+                    onClick={addCustomSkill}
+                  >
+                    Add
+                  </button>
+
+                  <button
+                    type="button"
+                    className="create-project-page__custom-skill-cancel"
+                    onClick={() => {
+                      setCustomSkill("");
+                      setShowCustomSkillInput(false);
+                    }}
+                  >
+                    Cancel
+                  </button>
+
+                </div>
+              )}
 
               <div className="create-project-page__selected">
 

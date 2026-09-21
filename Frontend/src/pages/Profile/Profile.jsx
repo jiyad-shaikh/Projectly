@@ -57,6 +57,9 @@ function Profile() {
     interests: []
   });
 
+  const [customSkill, setCustomSkill] = useState("");
+  const [showCustomSkillInput, setShowCustomSkillInput] = useState(false);
+
   const [stats, setStats] = useState({
   projects: 0,
   teammates: 0,
@@ -126,18 +129,58 @@ const [statsLoading, setStatsLoading] = useState(true);
   };
 
   const toggleSkill = (skill) => {
-    setFormData((previous) => {
-      const exists = previous.skills.includes(skill);
+  setFormData((previous) => {
+    const exists = previous.skills.includes(skill);
 
+    if (exists) {
       return {
         ...previous,
-        skills: exists
-          ? previous.skills.filter((item) => item !== skill)
-          : [...previous.skills, skill]
+        skills: previous.skills.filter((item) => item !== skill)
       };
-    });
-  };
+    }
 
+    if (previous.skills.length >= 4) {
+      setError("You can select up to 4 skills.");
+      return previous;
+    }
+
+    return {
+      ...previous,
+      skills: [...previous.skills, skill]
+    };
+  });
+
+  setError("");
+};
+
+  const addCustomSkill = () => {
+    const skill = customSkill.trim();
+
+    if (!skill) return;
+
+    if (formData.skills.length >= 4) {
+      setError("You can select up to 4 skills.");
+      return;
+    }
+
+    const alreadyExists = formData.skills.some(
+      (item) => item.toLowerCase() === skill.toLowerCase()
+    );
+
+    if (alreadyExists) {
+      setError("This skill has already been added.");
+      return;
+    }
+
+    setFormData((previous) => ({
+      ...previous,
+      skills: [...previous.skills, skill]
+    }));
+
+    setCustomSkill("");
+    setShowCustomSkillInput(false);
+    setError("");
+  };
   const removeSkill = (skill) => {
     setFormData((previous) => ({
       ...previous,
@@ -218,18 +261,21 @@ const [statsLoading, setStatsLoading] = useState(true);
   };
 
   const handleCancel = () => {
-    setFormData({
-      name: profile.name,
-      course: profile.course,
-      year: profile.year,
-      bio: profile.bio,
-      portfolio: profile.portfolio,
-      skills: [...profile.skills],
-      interests: [...profile.interests]
-    });
+  setFormData({
+    name: profile.name,
+    course: profile.course,
+    year: profile.year,
+    bio: profile.bio,
+    portfolio: profile.portfolio,
+    skills: [...profile.skills],
+    interests: [...profile.interests]
+  });
 
-    setError("");
-    setEditing(false);
+  setCustomSkill("");
+  setShowCustomSkillInput(false);
+
+  setError("");
+  setEditing(false);
   };
 
   const handleLogout = () => {
@@ -608,13 +654,14 @@ const [statsLoading, setStatsLoading] = useState(true);
                 <>
                   <div className="profile-page__skills-divider">
                     <span>Add skills</span>
+                    <small>{formData.skills.length}/4</small>
                   </div>
 
                   <div className="profile-page__available-skills">
 
+                    {/* PREDEFINED SKILLS */}
                     {allSkills.map((skill) => {
-                      const selected =
-                        formData.skills.includes(skill);
+                      const selected = formData.skills.includes(skill);
 
                       return (
                         <button
@@ -629,7 +676,76 @@ const [statsLoading, setStatsLoading] = useState(true);
                       );
                     })}
 
+                    {/* CUSTOM SKILLS */}
+                    {formData.skills
+                      .filter((skill) => !allSkills.includes(skill))
+                      .map((skill) => (
+                        <button
+                          key={skill}
+                          type="button"
+                          className="selected"
+                          onClick={() => toggleSkill(skill)}
+                        >
+                          <span>✓</span>
+                          {skill}
+                        </button>
+                      ))}
+
+                    {/* ADD CUSTOM SKILL */}
+                    {formData.skills.length < 4 && !showCustomSkillInput && (
+                      <button
+                        type="button"
+                        className="profile-page__custom-skill-btn"
+                        onClick={() => setShowCustomSkillInput(true)}
+                      >
+                        <span>+</span>
+                        Add skill
+                      </button>
+                    )}
+
                   </div>
+
+                  {/* CUSTOM SKILL INPUT */}
+                  {showCustomSkillInput && (
+                    <div className="profile-page__custom-skill">
+
+                      <input
+                        type="text"
+                        placeholder="Enter a skill, e.g. Docker"
+                        value={customSkill}
+                        onChange={(event) => {
+                          setCustomSkill(event.target.value);
+                          setError("");
+                        }}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter") {
+                            event.preventDefault();
+                            addCustomSkill();
+                          }
+                        }}
+                        autoFocus
+                      />
+
+                      <button
+                        type="button"
+                        onClick={addCustomSkill}
+                      >
+                        Add
+                      </button>
+
+                      <button
+                        type="button"
+                        className="profile-page__custom-skill-cancel"
+                        onClick={() => {
+                          setCustomSkill("");
+                          setShowCustomSkillInput(false);
+                        }}
+                      >
+                        Cancel
+                      </button>
+
+                    </div>
+                  )}
                 </>
               )}
 

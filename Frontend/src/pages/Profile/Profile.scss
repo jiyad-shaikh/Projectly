@@ -7,6 +7,109 @@
   // PageShell owns the global background.
   background: transparent;
 
+  &__skills-divider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    small {
+      color: $color-primary;
+      font-size: $font-xs;
+      font-weight: $weight-semibold;
+    }
+  }
+
+  &__custom-skill-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    padding: 8px 12px;
+
+    border: 1px dashed $color-border-hover;
+    border-radius: 999px;
+
+    background: rgba(124, 58, 237, 0.035);
+    color: $color-primary;
+
+    font-family: $font-family;
+    font-size: $font-xs;
+    font-weight: $weight-semibold;
+
+    cursor: pointer;
+
+    transition:
+      background $transition-fast,
+      border-color $transition-fast,
+      transform $transition-fast;
+
+    &:hover {
+      background: rgba(124, 58, 237, 0.08);
+      border-color: $color-primary;
+      transform: translateY(-1px);
+    }
+
+    span {
+      font-size: 1rem;
+      line-height: 1;
+    }
+  }
+
+  &__custom-skill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+
+    input {
+      @include input;
+
+      min-height: 40px;
+      padding: 0 12px;
+
+      font-family: $font-family;
+      font-size: $font-sm;
+    }
+
+    button {
+      min-height: 40px;
+      padding: 0 14px;
+
+      border: none;
+      border-radius: $radius-md;
+
+      background: $gradient-primary;
+      color: #ffffff;
+
+      font-family: $font-family;
+      font-size: $font-sm;
+      font-weight: $weight-semibold;
+
+      cursor: pointer;
+
+      transition:
+        transform $transition-fast,
+        box-shadow $transition-normal;
+
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: $shadow-glow;
+      }
+    }
+  }
+
+  &__custom-skill-cancel {
+    background: transparent !important;
+    color: $color-text-muted !important;
+
+    &:hover {
+      background: rgba(124, 58, 237, 0.06) !important;
+      color: $color-primary !important;
+      box-shadow: none !important;
+    }
+  }
+
   // =====================================================
   // HEADER
   // =====================================================
@@ -710,6 +813,47 @@
   .profile-page {
     background: transparent;
 
+    &__custom-skill-btn {
+      background: rgba(124, 58, 237, 0.07);
+      border-color: rgba(139, 92, 246, 0.28);
+      color: #a78bfa;
+
+      &:hover {
+        background: rgba(124, 58, 237, 0.12);
+        border-color: rgba(139, 92, 246, 0.55);
+        color: #c4b5fd;
+      }
+    }
+
+    &__custom-skill {
+      input {
+        background: $dark-surface-solid;
+        border-color: $dark-border;
+        color: $dark-text-primary;
+
+        &::placeholder {
+          color: $dark-text-muted;
+        }
+
+        &:focus {
+          border-color: rgba(139, 92, 246, 0.55);
+
+          box-shadow:
+            0 0 0 3px rgba(124, 58, 237, 0.12),
+            0 0 20px rgba(124, 58, 237, 0.06);
+        }
+      }
+    }
+
+    &__custom-skill-cancel {
+      color: $dark-text-muted !important;
+
+      &:hover {
+        background: rgba(124, 58, 237, 0.1) !important;
+        color: #c4b5fd !important;
+      }
+    }
+
     // Header
     &__header h1 {
       color: $dark-text-primary;
@@ -958,6 +1102,16 @@
 
 @include respond-mobile {
   .profile-page {
+
+    &__custom-skill {
+      flex-wrap: wrap;
+
+      input {
+        flex: 1;
+        min-width: 160px;
+      }
+    }
+
     &__header {
       align-items: flex-start;
       flex-direction: column;
