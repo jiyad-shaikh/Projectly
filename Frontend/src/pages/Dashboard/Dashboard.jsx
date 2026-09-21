@@ -8,9 +8,13 @@ import PageShell from "../../components/PageShell/PageShell";
 import { getProjects, getMyProjects } from "../../services/project.api";
 import { getSentRequests, getReceivedRequests } from "../../services/request.api";
 
+import { useAuth } from "../../hooks/useAuth";
+
 import "./Dashboard.scss";
 
 function Dashboard() {
+  const { user } = useAuth();
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [projects, setProjects] = useState([]);
@@ -198,7 +202,7 @@ function Dashboard() {
             </p>
 
             <h1>
-              Good morning, Jiyad 👋
+              Welcome, {user?.name?.split(" ")[0] || "there"} 👋
             </h1>
 
             <p className="dashboard__subtitle">
