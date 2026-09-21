@@ -1,12 +1,220 @@
+import { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { gsap } from "gsap";
+
 import ThemeToggle from "../../components/ThemeToggle/ThemeToggle";
-import "./Landing.scss";
 import ParticlesBackground from "../../components/ParticlesBackground/ParticlesBackground";
 
+import "./Landing.scss";
+
 function Landing() {
+  const landingRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        defaults: {
+          ease: "power3.out",
+        },
+      });
+
+      // Initial states
+      gsap.set(
+        [
+          ".landing__navbar",
+          ".landing__eyebrow",
+          ".landing h1",
+          ".landing__content > p",
+          ".landing__actions",
+          ".landing__trust",
+        ],
+        {
+          opacity: 0,
+          y: 30,
+        }
+      );
+
+      gsap.set(".landing__visual-card", {
+        opacity: 0,
+        y: 35,
+        scale: 0.94,
+      });
+
+      gsap.set(".landing__floating-card--top", {
+        opacity: 0,
+        x: 35,
+        scale: 0.9,
+      });
+
+      gsap.set(".landing__floating-card--bottom", {
+        opacity: 0,
+        x: -35,
+        scale: 0.9,
+      });
+
+      gsap.set(".landing__visual-glow", {
+        opacity: 0,
+        scale: 0.7,
+      });
+
+      // Navbar
+      tl.to(".landing__navbar", {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+      })
+
+        // Hero text
+        .to(
+          ".landing__eyebrow",
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.55,
+          },
+          "-=0.35"
+        )
+
+        .to(
+          ".landing h1",
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+          },
+          "-=0.25"
+        )
+
+        .to(
+          ".landing__content > p",
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+          },
+          "-=0.45"
+        )
+
+        // CTA buttons
+        .to(
+          ".landing__actions",
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.55,
+          },
+          "-=0.3"
+        )
+
+        // Trust section
+        .to(
+          ".landing__trust",
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.55,
+          },
+          "-=0.3"
+        )
+
+        // Main visual
+        .to(
+          ".landing__visual-card",
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.9,
+            ease: "back.out(1.4)",
+          },
+          "-=0.75"
+        )
+
+        // Glow
+        .to(
+          ".landing__visual-glow",
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            ease: "power2.out",
+          },
+          "-=0.8"
+        )
+
+        // Floating cards
+        .to(
+          ".landing__floating-card--top",
+          {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 0.65,
+            ease: "back.out(1.5)",
+          },
+          "-=0.65"
+        )
+
+        .to(
+          ".landing__floating-card--bottom",
+          {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 0.65,
+            ease: "back.out(1.5)",
+          },
+          "-=0.5"
+        );
+
+      // Subtle floating animation for the main card
+      gsap.to(".landing__visual-card", {
+        y: -7,
+        rotation: 1.2,
+        duration: 3.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 1.2,
+      });
+
+      // Floating notification cards
+      gsap.to(".landing__floating-card--top", {
+        y: -8,
+        duration: 2.6,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 1.5,
+      });
+
+      gsap.to(".landing__floating-card--bottom", {
+        y: 7,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 1.8,
+      });
+
+      // Ambient glow breathing effect
+      gsap.to(".landing__visual-glow", {
+        scale: 1.12,
+        opacity: 0.8,
+        duration: 3.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    }, landingRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <main className="landing">
+    <main className="landing" ref={landingRef}>
       <ParticlesBackground />
+
       <nav className="landing__navbar">
         <Link to="/" className="landing__brand">
           <div className="landing__brand-mark">P</div>
@@ -109,6 +317,7 @@ function Landing() {
 
           <div className="landing__floating-card landing__floating-card--top">
             <span>✓</span>
+
             <div>
               <strong>Perfect skill match</strong>
               <small>React · Node.js</small>
@@ -117,6 +326,7 @@ function Landing() {
 
           <div className="landing__floating-card landing__floating-card--bottom">
             <span>4</span>
+
             <div>
               <strong>Team members</strong>
               <small>Ready to collaborate</small>

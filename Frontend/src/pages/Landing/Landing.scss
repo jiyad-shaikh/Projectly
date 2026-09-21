@@ -794,3 +794,37 @@
     }
   }
 }
+
+// --------------------------------
+// GSAP ANIMATION SAFETY
+// --------------------------------
+
+.landing {
+  &__navbar,
+  &__eyebrow,
+  h1,
+  &__content > p,
+  &__actions,
+  &__trust,
+  &__visual-card,
+  &__floating-card,
+  &__visual-glow {
+    will-change: transform, opacity;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing {
+    &__navbar,
+    &__eyebrow,
+    h1,
+    &__content > p,
+    &__actions,
+    &__trust,
+    &__visual-card,
+    &__floating-card,
+    &__visual-glow {
+      will-change: auto;
+    }
+  }
+}

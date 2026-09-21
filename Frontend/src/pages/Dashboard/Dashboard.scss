@@ -1,23 +1,19 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
-
 // ========================================
 // DASHBOARD
 // ========================================
 
 .dashboard {
   width: 100%;
-
   min-height: 100%;
-
   background: transparent;
 
   transition:
     background $transition-smooth,
     color $transition-smooth;
 }
-
 
 // ========================================
 // HEADER
@@ -29,10 +25,12 @@
   justify-content: space-between;
 
   gap: 30px;
-
   margin-bottom: 34px;
 }
 
+.dashboard__header-content {
+  will-change: transform, opacity;
+}
 
 .dashboard__eyebrow {
   margin-bottom: 9px;
@@ -45,7 +43,6 @@
   letter-spacing: 0.14em;
 }
 
-
 .dashboard__header h1 {
   margin: 0;
 
@@ -55,10 +52,8 @@
   font-weight: $weight-bold;
 
   line-height: 1.15;
-
   letter-spacing: -0.035em;
 }
-
 
 .dashboard__subtitle {
   margin-top: 10px;
@@ -66,10 +61,8 @@
   color: $color-text-secondary;
 
   font-size: $font-sm;
-
   line-height: 1.6;
 }
-
 
 // ========================================
 // CREATE PROJECT BUTTON
@@ -92,8 +85,9 @@
   font-weight: $weight-semibold;
 
   @include gradient-button;
-}
 
+  will-change: transform, opacity;
+}
 
 // ========================================
 // STATISTICS
@@ -109,6 +103,11 @@
   margin-bottom: 42px;
 }
 
+.dashboard__stat-item {
+  min-width: 0;
+
+  will-change: transform, opacity;
+}
 
 // ========================================
 // SECTIONS
@@ -116,11 +115,13 @@
 
 .dashboard__section {
   margin-bottom: 44px;
-}
 
+  will-change: transform, opacity;
+}
 
 .dashboard__section-header {
   display: flex;
+
   align-items: flex-end;
   justify-content: space-between;
 
@@ -128,7 +129,6 @@
 
   margin-bottom: 18px;
 }
-
 
 .dashboard__section-header h2 {
   margin: 0;
@@ -141,7 +141,6 @@
   letter-spacing: -0.025em;
 }
 
-
 .dashboard__section-header p {
   margin-top: 5px;
 
@@ -150,15 +149,12 @@
   font-size: $font-sm;
 }
 
-
 // ========================================
 // SECTION ACTION
 // ========================================
 
-.dashboard__section-header button {
-  border: none;
-
-  background: transparent;
+.dashboard__section-link {
+  flex-shrink: 0;
 
   color: $color-primary;
 
@@ -171,11 +167,9 @@
 
   &:hover {
     color: $color-primary-hover;
-
     transform: translateX(3px);
   }
 }
-
 
 // ========================================
 // PROJECT GRID
@@ -189,44 +183,67 @@
   gap: 18px;
 }
 
+.dashboard__project-item {
+  min-width: 0;
+
+  will-change: transform, opacity;
+
+  // GSAP handles the actual hover movement.
+  // This makes the transition feel smooth if
+  // the browser has to repaint the card.
+  transform-origin: center;
+}
+
+// ========================================
+// ERROR
+// ========================================
+
+.dashboard__error {
+  margin-bottom: 24px;
+
+  padding: 13px 16px;
+
+  border: 1px solid rgba(239, 68, 68, 0.2);
+
+  border-radius: $radius-md;
+
+  background: rgba(239, 68, 68, 0.07);
+
+  color: #dc2626;
+
+  font-size: $font-sm;
+}
 
 // ========================================
 // DARK THEME
 // ========================================
 
 [data-theme="dark"] {
-
   .dashboard {
     color: $dark-text-primary;
   }
-
 
   .dashboard__eyebrow {
     color: #a78bfa;
   }
 
-
   .dashboard__header h1 {
     color: $dark-text-primary;
   }
-
 
   .dashboard__subtitle {
     color: $dark-text-secondary;
   }
 
-
   .dashboard__section-header h2 {
     color: $dark-text-primary;
   }
-
 
   .dashboard__section-header p {
     color: $dark-text-secondary;
   }
 
-
-  .dashboard__section-header button {
+  .dashboard__section-link {
     color: #a78bfa;
 
     &:hover {
@@ -234,58 +251,56 @@
     }
   }
 
-
   .dashboard__create-btn {
     box-shadow:
       0 8px 25px rgba(124, 58, 237, 0.20);
   }
-}
 
+  .dashboard__error {
+    border-color: rgba(248, 113, 113, 0.2);
+
+    background: rgba(248, 113, 113, 0.07);
+
+    color: #fca5a5;
+  }
+}
 
 // ========================================
 // TABLET
 // ========================================
 
 @include respond-tablet {
-
   .dashboard__header {
     align-items: flex-start;
   }
 
-
   .dashboard__stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
 
   .dashboard__projects {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-
 // ========================================
 // MOBILE
 // ========================================
 
 @include respond-mobile {
-
   .dashboard__header {
     display: block;
 
     margin-bottom: 28px;
   }
 
-
   .dashboard__eyebrow {
     font-size: 0.68rem;
   }
 
-
   .dashboard__header h1 {
     font-size: 1.65rem;
   }
-
 
   .dashboard__subtitle {
     max-width: 320px;
@@ -293,13 +308,11 @@
     font-size: 0.8rem;
   }
 
-
   .dashboard__create-btn {
     width: 100%;
 
     margin-top: 18px;
   }
-
 
   .dashboard__stats {
     grid-template-columns: 1fr;
@@ -309,11 +322,9 @@
     margin-bottom: 34px;
   }
 
-
   .dashboard__section {
     margin-bottom: 36px;
   }
-
 
   .dashboard__section-header {
     align-items: flex-start;
@@ -321,27 +332,41 @@
     margin-bottom: 14px;
   }
 
-
   .dashboard__section-header h2 {
     font-size: 1.05rem;
   }
-
 
   .dashboard__section-header p {
     font-size: 0.75rem;
   }
 
-
-  .dashboard__section-header button {
+  .dashboard__section-link {
     flex-shrink: 0;
 
     font-size: 0.72rem;
   }
 
-
   .dashboard__projects {
     grid-template-columns: 1fr;
 
     gap: 14px;
+  }
+}
+
+// ========================================
+// REDUCED MOTION
+// ========================================
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard__header-content,
+  .dashboard__create-btn,
+  .dashboard__stat-item,
+  .dashboard__section,
+  .dashboard__project-item {
+    will-change: auto;
+  }
+
+  .dashboard__section-link {
+    transition: none;
   }
 }
